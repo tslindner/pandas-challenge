@@ -1,4 +1,10 @@
 
+<big><big><b>Heroes of Pymoli Data Analysis</b></big></big>
+
+Observed Trend 1:  The bulk of the profits generated from this game come from the 20-24 age range.<br>
+Observed Trend 2:  The more expensive items generate more revenue, despite their lower purchase counts.<br>
+Observed Trend 3:  Other / Non-Disclosed gendered players spend more per item than male or female players, but in such low numbers that it is hardly significant.<br>
+
 
 ```python
 import pandas as pd
@@ -7,6 +13,8 @@ df_path = 'purchase_data.JSON'
 df = pd.read_json(df_path)
 
 ```
+
+<big><b>PLAYER COUNT</b></big>
 
 
 ```python
@@ -56,6 +64,8 @@ player_count_df
 </div>
 
 
+
+<big><b>Purchasing Analysis (Total)</b></big>
 
 
 ```python
@@ -127,6 +137,8 @@ purchasing_analysis
 
 
 
+<big><b>Gender Demographics</b></big>
+
 
 ```python
 unique_player_df = df.drop_duplicates(subset='SN', keep="last")
@@ -194,6 +206,8 @@ gender_demographics
 </div>
 
 
+
+<big><b>Purchasing Analysis (Gender)</b></big>
 
 
 ```python
@@ -297,6 +311,8 @@ purchasing_analysis
 
 
 
+<big><b>Age Demographics</b></big>
+
 
 ```python
 
@@ -399,6 +415,8 @@ age_demographics
 </div>
 
 
+
+<big><b>Purchasing Analysis (Age)</b></big>
 
 
 ```python
@@ -530,6 +548,8 @@ binned_purchase_analysis_df
 
 
 
+<big><b>Top Spenders</b></big>
+
 
 ```python
 spenders_df = df[['Item ID', 'Price', 'SN']]
@@ -636,6 +656,8 @@ spenders_df
 
 
 
+<big><b>Most Popular Items</b></big>
+
 
 ```python
 item_group_df = df[['Item ID', 'Item Name', 'Price']]
@@ -663,14 +685,14 @@ item_count_df.set_index(['Item ID', 'Item Name'], inplace=True)
 most_prof_item_count_df = item_count_df
 most_pop_item_count_df = item_count_df
 
-most_prof_item_count_df = most_prof_item_count_df.sort_values('Purchase Count', ascending=False)
-most_prof_item_count_df = most_prof_item_count_df.iloc[0:5,:]
+most_pop_item_count_df = most_pop_item_count_df.sort_values('Purchase Count', ascending=False)
+most_pop_item_count_df = most_pop_item_count_df.iloc[0:5,:]
 
-most_prof_item_count_df['Item Price'] = most_prof_item_count_df['Item Price'].map('$ {:,.2f}'.format)
-most_prof_item_count_df['Total Purchase Value'] = most_prof_item_count_df['Total Purchase Value'].map('$ {:,.2f}'.format)
+most_pop_item_count_df['Item Price'] = most_pop_item_count_df['Item Price'].map('$ {:,.2f}'.format)
+most_pop_item_count_df['Total Purchase Value'] = most_pop_item_count_df['Total Purchase Value'].map('$ {:,.2f}'.format)
 
 
-most_prof_item_count_df
+most_pop_item_count_df
 ```
 
 
@@ -749,16 +771,18 @@ most_prof_item_count_df
 
 
 
+<big><b>Most Profitable Items</b></big>
+
 
 ```python
-most_pop_item_count_df = item_count_df.sort_values('Total Purchase Value', ascending=False)
-most_pop_item_count_df = most_pop_item_count_df.iloc[0:5,:]
+most_prof_item_count_df = item_count_df.sort_values('Total Purchase Value', ascending=False)
+most_prof_item_count_df = most_prof_item_count_df.iloc[0:5,:]
 
-most_pop_item_count_df['Item Price'] = most_pop_item_count_df['Item Price'].map('$ {:,.2f}'.format)
-most_pop_item_count_df['Total Purchase Value'] = most_pop_item_count_df['Total Purchase Value'].map('$ {:,.2f}'.format)
+most_prof_item_count_df['Item Price'] = most_prof_item_count_df['Item Price'].map('$ {:,.2f}'.format)
+most_prof_item_count_df['Total Purchase Value'] = most_prof_item_count_df['Total Purchase Value'].map('$ {:,.2f}'.format)
 
 
-most_pop_item_count_df
+most_prof_item_count_df
 ```
 
 
